@@ -1,0 +1,14 @@
+etcJupyter:
+  # Options for Jupyter Notebook itself, set for each user
+  jupyter_notebook_config.json: {}
+
+nfsPVC:
+  enabled: false
+  # If you want a PVC with NFS that can be used to mount home directories
+  # nfs:
+    # serverIP: # IP of your NFS Server
+    # shareName: # Path of your NFS share export
+
+jupyterhub: {}
+    # z2jh customizations go here
+

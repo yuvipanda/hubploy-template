@@ -1,0 +1,31 @@
+images:
+  image_name: # TODO: Full path to your docker image
+  registry:
+    provider: # TODO: Pick 'gcloud' or 'aws', and fill up other config accordingly
+    gcloud:
+      # Pushes to Google Container Registry.
+      project: # TODO: GCloud Project Name
+      # Make a service account with GCR push permissions, put it in secrets/gcr-key.json
+      service_key: gcr-key.json
+    aws:
+      # Pushes to Amazon ECR
+      project: # TODO: AWS project id
+      zone: # TODO: Zone in which your container image should live. Match your cluster's zone
+      # TODO: Get AWS credentials that can push to ECR, in same format as ~/.aws/credentials
+      # then put them in secrets/aws-config.txt
+      service_key: aws-config.txt
+
+cluster:
+  provider: # TODO: gcloud or aws
+  gcloud:
+    project: # TODO: Name of your Google Cloud project with the cluster in it
+    cluster: # TODO: Name of your Kubernetes cluster
+    zone: # TODO: Zone or region your cluster is in
+    # Make a service key with permissions to talk to your cluster, put it in secrets/gkee-key.json
+    service_key: gke-key.json
+  aws:
+      project: # TODO: AWS project id
+      zone: # TODO: Zone in which your container image should live. Match your cluster's zone
+      # TODO: Get AWS credentials that can access your EKS cluster, in same format as ~/.aws/credentials
+      # then put them in secrets/aws-eks-config.txt
+      service_key: aws-eks-config.txt
