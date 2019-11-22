@@ -3,6 +3,3 @@ jupyterhub:
     memory:
       guarantee: 512M
       limit: 1G
-    image:
-      name: {{ cookiecutter.image_name }}
-      
