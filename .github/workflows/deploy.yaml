@@ -1,0 +1,48 @@
+name: Deploy
+on:
+  push:
+    branches:
+    - staging
+    - prod
+
+jobs:
+  build:
+    name:
+    # This job runs on Linux
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: docker://yuvipanda/hubploy:20191210215236cfab2d
+        name: unlock git-crypt secrets
+        env:
+          GIT_CRYPT_KEY: ${{ secrets.GIT_CRYPT_KEY }}
+        with:
+          entrypoint: /bin/bash
+          # BE, VEWY VEWY QUIET. Bugs hidden down here among the quotes
+          # Where the env var interpolation happens matters. By putting the
+          # entire thing in quotes, we do the interpolation when GitHub runs
+          # the 'docker run' command, passing the base64 encoded data in to the container.
+          # This somehow seems to work better - FOR UNKNOWN TO ME AT THIS TIME REASONS -
+          # than having the interpolation happen inside the container, despite the fact
+          # that github *is* passing the variable into the container too.
+          # Given that this is our git crypt key, I'm scared
+          args: -c "echo ${GIT_CRYPT_KEY} | base64 -d | git crypt unlock - && git crypt status"
+      - uses: docker://yuvipanda/hubploy:20191210215236cfab2d
+        name: build & push image if needed
+        with:
+          args: build audio-eye --check-registry --push
+      - uses: docker://yuvipanda/hubploy:20191210215236cfab2d
+        name: Setup Helm
+        with:
+          entrypoint: /bin/bash
+          args: -c "helm init --client-only && helm repo add jupyterhub https://jupyterhub.github.io/helm-chart/ && helm repo update"
+      - uses: docker://yuvipanda/hubploy:dev
+        name: Deploy to staging
+        if: github.ref == 'refs/heads/staging'
+        with:
+          args: deploy myhub hub staging
+      - uses: docker://yuvipanda/hubploy:20191210215236cfab2d
+        name: Deploy to prod
+        if: github.ref == 'refs/heads/prod'
+        with:
+          args: deploy myhub hub prod

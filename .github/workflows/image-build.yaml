@@ -1,0 +1,19 @@
+name: Build Images
+on:
+  pull_request:
+    branches-ignore:
+      # We run don't want a PR build for staging -> master PRs
+      - prod
+
+
+jobs:
+  build:
+    name:
+    # This job runs on Linux
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: docker://yuvipanda/hubploy:20191210215236cfab2d
+        name: test building image
+        with:
+          args: build myhub
