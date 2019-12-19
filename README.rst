@@ -10,8 +10,7 @@ Step 0: Set up your pre-requisites
 hubploy does *not* manage your cloud resources - only your *Kubernetes*
 resources. You should use some other means to create your cloud
 resources. At a minimum, hubploy expects a Kubernetes cluster with [helm
-installed]
-(https://zero-to-jupyterhub.readthedocs.io/en/latest/setup-jupyterhub/setup-helm.html).
+installed](https://zero-to-jupyterhub.readthedocs.io/en/latest/setup-jupyterhub/setup-helm.html).
 Many installations want to use a shared file system for home
 directories, so in those cases you want to have that managed outside
 hubploy as well.
