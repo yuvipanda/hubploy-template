@@ -139,13 +139,69 @@ Step 7: Deploy to prod
 You can then do a production deployment with: ``hubploy deploy <hub-name> hub prod``, and
 test it out!
 
+Step 8: Setup git-crypt for secrets
+===================================
+
+`git-crypt <https://github.com/AGWA/git-crypt>`_ is used to keep encrypted secrets in the
+git repository. We would eventually like to use something like `sops <https://github.com/mozilla/sops>`_
+but for now...
+
+1. Install git-crypt. You can get it from brew or your package manager.
+
+2. In your repo, initialize it.
+
+   .. code:: bash
+
+      git crypt init
+
+3. In ``.gitattributes`` have the following contents:
+
+   .. code::
+
+      deployments/*/secrets/** filter=git-crypt diff=git-crypt
+      deployments/**/secrets/** filter=git-crypt diff=git-crypt
+      support/secrets.yaml filter=git-crypt diff=git-crypt
+
+4. Make a copy of your encryption key. This will be used to decrypt the secrets.
+   You will need to share it with your CD provider, and anyone else.
+
+   .. code::
+
+      git crypt export-key key
+
+   This puts the key in a file called 'key'
+
+Step 9: GitHub workflows
+========================
+
+1. Get a base64 copy of your key
+
+   .. code:: block
+
+      cat key | base64
+
+2. Put it as a secret named GIT_CRYPT_KEY in github secrets.
+
+3. Make sure you change the `myhub` to your deployment name in the
+   workflows under `.github/workflows`.
+
+4. Push to the staging branch, and check out GitHub actions, to
+   see if your action goes to completion.
+
+5. If the staging action succeeds, make a PR from staging to prod,
+   and merge this PR. This should also trigger an action - see if
+   this works out.
+
+**Note**: *Always* make a PR from staging to prod, never push directly to
+prod. We want to keep the staging and prod branches as close to each
+other as possible, and this is the only long term guaranteed way to do
+that.
+
 
 TODO
 ====
 
-1. Secrets & how to keep them
-2. Continuous Integration / Deployment
-3. What kinda kubernetes setup this needs
+1. What kinda kubernetes setup this needs
 
 .. _repo2docker: https://repo2docker.readthedocs.io/
 .. _supported configuration files: https://repo2docker.readthedocs.io/en/latest/config_files.html
