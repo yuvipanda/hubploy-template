@@ -104,7 +104,7 @@ then find the public IP of your hub with:
 
 .. code:: bash
 
-   kubectl -n <hub-name>-staging get svc public-proxy
+   kubectl -n <hub-name>-staging get svc proxy-public
 
 If you access that, you should be able to get in with any username &
 password.
