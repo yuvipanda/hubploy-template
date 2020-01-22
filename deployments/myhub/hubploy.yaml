@@ -11,11 +11,11 @@ images:
       service_key: gcr-key.json
     aws:
       # Pushes to Amazon ECR
-      project: # TODO: AWS project id
+      project: # TODO: AWS account id
       zone: # TODO: Zone in which your container image should live. Match your cluster's zone
       # TODO: Get AWS credentials that can push to ECR, in same format as ~/.aws/credentials
-      # then put them in secrets/aws-config.txt
-      service_key: aws-config.txt
+      # then put them in secrets/aws-ecr-config.cfg
+      service_key: aws-ecr-config.cfg
 
 cluster:
   provider: # TODO: gcloud or aws
@@ -26,8 +26,8 @@ cluster:
     # Make a service key with permissions to talk to your cluster, put it in secrets/gkee-key.json
     service_key: gke-key.json
   aws:
-      project: # TODO: AWS project id
-      zone: # TODO: Zone in which your container image should live. Match your cluster's zone
-      # TODO: Get AWS credentials that can access your EKS cluster, in same format as ~/.aws/credentials
-      # then put them in secrets/aws-eks-config.txt
-      service_key: aws-eks-config.txt
+    project: # TODO: AWS account id
+    zone: # TODO: Zone or region in which your cluster is set up
+    # TODO: Get AWS credentials that can access your EKS cluster, in same format as ~/.aws/credentials
+    # then put them in secrets/aws-eks-config.cfg
+    service_key: aws-eks-config.cfg
