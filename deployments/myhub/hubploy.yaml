@@ -1,5 +1,7 @@
 images:
-  image_name: # TODO: Full path to your docker image
+  image_name: # TODO: Full path to your docker image, based on the following pattern
+  # On AWS: <account-id>.dkr.ecr.<zone>.amazonaws.com/<your-hub-name>-user-image
+  # On Google Cloud: gcr.io/<project-name>/<your-hub-name>-user-image
   registry:
     provider: # TODO: Pick 'gcloud' or 'aws', and fill up other config accordingly
     gcloud:
