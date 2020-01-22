@@ -66,14 +66,23 @@ You need to find all things marked TODO and fill them in. In particular,
 Step 4: Build and push the image
 ================================
 
-Run:
+1. Make sure tha appropriate docker credential helper is installed, so
+   hubploy can push to the registry you need.
 
-.. code:: bash
+   For AWS, you need `docker-ecr-credential-helper <https://github.com/awslabs/amazon-ecr-credential-helper>`_
+   For Google Cloud, you need the `gcloud commandline tool <https://cloud.google.com/sdk/>`_
 
-   hubploy build <hub-name> --push --check-registry
+2. Make sure you are in your repo's root directory, so hubploy can find the
+   directory structure it expects.
 
-This should check if the user image for your hub needs to be rebuilt,
-and if so, it’ll build and push it.
+3. Build and push the image to the registry
+
+   .. code:: bash
+
+      hubploy build <hub-name> --push --check-registry
+
+   This should check if the user image for your hub needs to be rebuilt,
+   and if so, it’ll build and push it.
 
 Step 5: Deploy the staging hub
 ==============================
