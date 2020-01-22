@@ -28,6 +28,7 @@ cluster:
   aws:
     project: # TODO: AWS account id
     zone: # TODO: Zone or region in which your cluster is set up
+    cluster: # TODO: The name of your EKS cluster
     # TODO: Get AWS credentials that can access your EKS cluster, in same format as ~/.aws/credentials
     # then put them in secrets/aws-eks-config.cfg
     service_key: aws-eks-config.cfg
