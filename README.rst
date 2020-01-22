@@ -107,7 +107,7 @@ then find the public IP of your hub with:
    kubectl -n <hub-name>-staging get svc proxy-public
 
 If you access that, you should be able to get in with any username &
-password.
+password. It might take a minute to be able to be accessible.
 
 The defaults provision each user their own EBS / Persistent Disk, so
 this can get expensive quickly :) Watch out!
