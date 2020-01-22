@@ -46,7 +46,12 @@ Step 2: Rename the hub to something more sensible
 
 Each directory inside ``deployments/`` represents an installation of
 JupyterHub. The default is called ``myhub``, but *please* rename it to
-something more descriptive
+something more descriptive. ``git commit`` the result as well.
+
+.. code:: bash
+
+   git mv deployments/myhub deployments/<your-hub-name>
+   git commit
 
 Step 3: Fill in all the config details
 ======================================
