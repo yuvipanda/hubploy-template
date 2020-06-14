@@ -8,27 +8,29 @@ Step 0: Set up your pre-requisites
 ==================================
 
 hubploy does *not* manage your cloud resources - only your *Kubernetes*
-resources. You should use some other means to create your cloud
-resources. At a minimum, hubploy expects a Kubernetes cluster with [helm
-installed](https://zero-to-jupyterhub.readthedocs.io/en/latest/setup-jupyterhub/setup-helm.html).
-Many installations want to use a shared file system for home
-directories, so in those cases you want to have that managed outside
-hubploy as well.
+resources. You should use some other means to create your cloud resources. At a
+minimum, hubploy expects a Kubernetes cluster. When hubploy is used with Helm 2,
+it also expects Helm 2's tiller to be installed in the Kubernetes cluster. Many
+installations want to use a shared file system for home directories, so in those
+cases you want to have that managed outside hubploy as well.
 
 You also need the following tools installed:
 
-#. Your cloud vendor's commandline tool.
+#. Your cloud vendor's command line tool.
 
    #. `Google Cloud SDK <https://cloud.google.com/sdk/>`_ for Google Cloud
    #. `AWS CLI <https://aws.amazon.com/cli/>`_ for AWS
    #. `Azure CLI <https://docs.microsoft.com/en-us/cli/azure/>`_ for Azure
 
-#. A local install of `helm 2 <https://helm.sh/>`_. Note that helm 3 is *not*
-   supported yet. The client version should match the version on your server (you
-   can find your server version with ``helm version``.
+#. The `helm <https://helm.sh/>`_ command line tool (v2 or v3).
 
-#. A `docker environment <https://docs.docker.com/install/>`_ that you can use. This
-   is only needed when building images.
+   If you are using Helm 2, ensure your client version of Helm match the version
+   of `tiller` in your Kubernetes cluster with ``helm version``. If you have
+   already deployed a Helm chart with Helm 2 and want to switch to Helm 3, a
+   migration needs to be done first.
+
+#. A `docker environment <https://docs.docker.com/get-docker/>`_ that you can
+   use. This is only needed when building and pushing images.
 
 Step 1: Install hubploy
 =======================
