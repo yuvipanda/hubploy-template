@@ -23,9 +23,8 @@ You also need the following tools installed:
    #. `AWS CLI <https://aws.amazon.com/cli/>`_ for AWS
    #. `Azure CLI <https://docs.microsoft.com/en-us/cli/azure/>`_ for Azure
 
-#. A local install of `helm 2 <https://helm.sh/>`_. Note that helm 3 is *not*
-   supported yet. The client version should match the version on your server (you
-   can find your server version with ``helm version``.
+#. A local install of `helm 3 <https://helm.sh/>`_. Note that helm 2 is *not*
+   supported yet. 
 
 #. A `docker environment <https://docs.docker.com/install/>`_ that you can use. This
    is only needed when building images.
