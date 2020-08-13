@@ -1,1 +1,1 @@
-hubploy
+git+https://github.com/yuvipanda/hubploy@7f61648fefe8201651ba88cd0ae9374a88b3fc70
