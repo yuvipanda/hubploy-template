@@ -18,10 +18,10 @@ For help with setting up the template repository, see
 the guide `How to Setup a Repository to Deploy a JupyterHub with Hubploy`_.
 
 For more information about the expected file and folder structure, see
-the topics `Hubploy’s Expected Directory Structure`_ and
+the topics `Hubploy\'s Expected Directory Structure`_ and
 `YAML File Value Overriding in Hubploy`_
 
 
 .. _How to Setup a Repository to Deploy a JupyterHub with Hubploy: https://hubploy.readthedocs.io/en/latest/howto/hubploy-deploy-jupyterhub-repo-setup.html
-.. _Hubploy's Expected Directory Structure: https://hubploy.readthedocs.io/en/latest/topics/topic-directory-structure.html
+.. _Hubploy\'s Expected Directory Structure: https://hubploy.readthedocs.io/en/latest/topics/topic-directory-structure.html
 .. _YAML File Value Overriding in Hubploy: https://hubploy.readthedocs.io/en/latest/topics/topic-values-yaml-overriding.html
