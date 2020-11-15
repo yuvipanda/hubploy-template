@@ -1,14 +1,35 @@
+# This file contain the default values of this locally defined Helm chart that
+# hubploy deploys.
+#
+# With hubploy, the Helm templates will render using values coalesced from:
+# 1. subcharts' default values
+# 2. these default values
+# 3. relevant values in the deployments/<name>/config|secrets
+#
+
+# Configuration files to save into a k8s ConfigMap named user-etc-jupyter that
+# can be mounted on user pods by configuring the JupyterHub Helm chart.
 etcJupyter:
-  # Options for Jupyter Notebook itself, set for each user
   jupyter_notebook_config.json: {}
 
+# Optional creation of a PV/PVC which can be useful when a NFS server contain
+# home directories.
 nfsPVC:
   enabled: false
-  # If you want a PVC with NFS that can be used to mount home directories
-  # nfs:
-    # serverIP: # IP of your NFS Server
-    # shareName: # Path of your NFS share export
+  nfs:
+    serverIP:   # IP of your NFS Server
+    shareName:  # Path of your NFS share export
 
+
+# Subcharts
+# -------------------------------------------------------------------------------
+# To coalesce values of subcharts that this local Helm chart dependens on,
+# declare them under their respective subchart name. Update dependencies in the
+# Chart.yaml file to add subcharts.
+
+# JupyterHub chart links:
+# - User guide:                     https://z2jh.jupyter.org
+# - Config reference (incomplete):  https://zero-to-jupyterhub.readthedocs.io/en/latest/resources/reference.html
+# - JupyterHub defaults (complete): https://github.com/jupyterhub/zero-to-jupyterhub-k8s/blob/master/jupyterhub/values.yaml
+#
 jupyterhub: {}
-    # z2jh customizations go here
-
